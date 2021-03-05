@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      
+      $(document).ready(function(){
+        
+        $("button#jisuan").click(function(){
+          var hugao = $('#hugao').val();
+          var xianchang = $('#xianchang').val();
+
+          var cal_hubanjing = function (hugao, xianchang){
+            var r;
+            r = (xianchang*xianchang)/(8*hugao) + (hugao/2);
+
+            return r;
+          };
+          
+          var cal_huchang = function (hubanjing, xianchang){
+            var huchang;
+            var a = Math.asin( (xianchang/2)/hubanjing );
+            console.log(a);
+            huchang = (2*a*hubanjing).toFixed(4);
+            return huchang;
+          };
+          // 1 弧长L＝nπr/180,其中n为圆心角的度数,r为圆的半径,π是圆周率
+          // 2 弧长L ＝αr 其中α为圆心角的弧度数,r为圆的半径
+
+          console.log("计算", hugao, xianchang);
+          var hubanjing = cal_hubanjing(hugao, xianchang);
+          var huchang = cal_huchang(hubanjing, xianchang);
+          console.log("结果", hubanjing, huchang);
+          
+          $('#hubanjing').val(hubanjing);
+          $('#huchang').val(huchang);
+        })
+  
+      });
+        
+    </script>
+    <title>弧长计算</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-3">
+          <button type="button" class="btn btn-outline-primary">弧高</button>
+        </div>
+        <div class="col-9" >
+          <input class="form-control"  id="hugao" type="number" placeholder="请输入弧高">
+        </div>
+      </div>
+      
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-3">
+          <button type="button" class="btn btn-outline-primary">弦长</button>
+        </div>
+        <div class="col-9">
+            <input class="form-control" id="xianchang" type="number" placeholder="请输入弦长">
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-3">
+        </div>
+        <div class="col-9">
+            <button type="button" id="jisuan" class="btn btn-primary">计算</button>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-3">
+          <button type="button" class="btn btn-outline-primary">半径</button>          
+        </div>
+        <div class="col-9">
+          <input class="form-control" id="hubanjing" type="text" disabled placeholder="弧半径">
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-3">
+          <button type="button" class="btn btn-outline-primary">弧长</button>                    
+        </div>
+        <div class="col-9">
+          <input class="form-control" id="huchang" type="text" disabled placeholder="弧长">
+        </div>
+      </div>
+
+    </div>
+  
+
+  </body>
+  
+</html>
